@@ -1,0 +1,14 @@
+object OptionsPage: TOptionsPage
+  Left = 192
+  Top = 107
+  Width = 420
+  Height = 203
+  Caption = 'OptionsPage'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  PixelsPerInch = 96
+end
