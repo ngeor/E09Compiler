@@ -3,7 +3,7 @@ E09Compiler
 
 Delphi app that handles assembly language instructions and generates report (legacy project)
 
-![screenshot](/E09Compiler/scrnshot.png?raw=true "Screenshot")
+![screenshot](/scrnshot.png?raw=true "Screenshot")
 
 Assembly Commands
 -----------------
