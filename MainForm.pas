@@ -278,7 +278,8 @@ var
 
   procedure ShowWarning(const msg: string; LineNumber: integer);
   begin
-    ShowMsg('[Προειδοποίηση] ' + '(' + IntToStr(LineNumber) + '): ' + msg, 1);
+    ShowMsg('[Προειδοποίηση] ' + '(' + IntToStr(LineNumber) +
+      '): ' + msg, 1);
   end;
 
 begin
@@ -317,7 +318,8 @@ begin
         if c.Address then
         begin
           if sParam = '' then
-            ShowError('Η εντολή ' + c.Name + ' απαιτεί διεύθυνση για όρισμα', i + 1)
+            ShowError('Η εντολή ' + c.Name +
+              ' απαιτεί διεύθυνση για όρισμα', i + 1)
           else if IsHexNumber(sParam, $FFFF, addrLabel) then
           begin
             grid.Cells[1, j] := IntToHex(Lo(addrLabel), 2);
@@ -343,7 +345,8 @@ begin
         begin
           sParam := Trim(sParam);
           if sParam = '' then
-            ShowError('Η εντολή ' + c.Name + ' απαιτεί αριθμό δύο bytes για όρισμα', i + 1)
+            ShowError('Η εντολή ' + c.Name +
+              ' απαιτεί αριθμό δύο bytes για όρισμα', i + 1)
           else if IsHexNumber(sParam, $FFFF, dblParam) then
           begin
             grid.Cells[1, j] := IntToHex(Lo(dblParam), 2);
@@ -381,7 +384,8 @@ begin
         grid.Objects[1, k] := nil;
       end
       else
-        ShowWarning('Η ετικέτα ' + grid.Cells[1, k] + ' δεν έχει οριστεί', 0);
+        ShowWarning('Η ετικέτα ' + grid.Cells[1, k] +
+          ' δεν έχει οριστεί', 0);
     end;
 
 end;
@@ -621,8 +625,8 @@ end;
 
 procedure TForm1.ShowCaretPos;
 begin
-  StatusBar1.Panels[0].Text := IntToStr(txtAssembly.CaretPos.Y + 1) +
-    ': ' + IntToStr(txtAssembly.CaretPos.X + 1);
+  StatusBar1.Panels[0].Text :=
+    IntToStr(txtAssembly.CaretPos.Y + 1) + ': ' + IntToStr(txtAssembly.CaretPos.X + 1);
 end;
 
 procedure TForm1.txtAssemblyKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
