@@ -15,8 +15,7 @@ type
     FAddress: boolean;
     FComma: boolean;
   public
-    constructor Create(const sName: string; nBytes: integer; nCode: byte;
-      bAddress, bComma: boolean); overload;
+    constructor Create(const sName: string; nBytes: integer; nCode: byte; bAddress, bComma: boolean); overload;
     constructor Create(const sSyntax: string; nCode: byte); overload;
     property Name: string read FName;
     property Bytes: integer read FBytes;
@@ -111,8 +110,7 @@ begin
   Result := Trim(Result);
 end;
 
-constructor T8085Command.Create(const sName: string; nBytes: integer;
-  nCode: byte; bAddress, bComma: boolean);
+constructor T8085Command.Create(const sName: string; nBytes: integer; nCode: byte; bAddress, bComma: boolean);
 begin
   inherited Create;
   FName := sName;
