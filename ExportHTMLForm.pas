@@ -65,8 +65,9 @@ begin
       if grid.Cells[j, i] = '' then
         WriteLn(f, #9#9'<td bordercolor="#000000">&nbsp;</td>')
       else
-        WriteLn(f, #9#9'<td bordercolor="#000000"><font face="' + cmbFontFace.Text +
-          '" size="' + txtFontSize.Text + '">' + grid.Cells[j, i] + '</font></td>');
+        WriteLn(f, #9#9'<td bordercolor="#000000"><font face="' +
+          cmbFontFace.Text + '" size="' + txtFontSize.Text + '">' +
+          grid.Cells[j, i] + '</font></td>');
     WriteLn(f, #9'</tr>');
   end;
   WriteLn(f, '</table></p></body></html>');
