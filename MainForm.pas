@@ -122,16 +122,18 @@ type
     procedure txtAssemblyChange(Sender: TObject);
     procedure actViewMessagesExecute(Sender: TObject);
     procedure actViewMessagesUpdate(Sender: TObject);
-    procedure panDockDockOver(Sender: TObject; Source: TDragDockObject; X, Y: integer;
-      State: TDragState; var Accept: boolean);
+    procedure panDockDockOver(Sender: TObject; Source: TDragDockObject;
+      X, Y: integer; State: TDragState; var Accept: boolean);
     procedure panDockDockDrop(Sender: TObject; Source: TDragDockObject; X, Y: integer);
-    procedure panDockUnDock(Sender: TObject; Client: TControl; NewTarget: TWinControl; var Allow: boolean);
+    procedure panDockUnDock(Sender: TObject; Client: TControl;
+      NewTarget: TWinControl; var Allow: boolean);
     procedure FormShow(Sender: TObject);
     procedure actEditOptionsExecute(Sender: TObject);
     procedure txtAssemblyKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure txtAssemblyKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure actEditUndoExecute(Sender: TObject);
-    procedure txtAssemblyMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: integer);
+    procedure txtAssemblyMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: integer);
     procedure actEditFindExecute(Sender: TObject);
     procedure FindDialog1Find(Sender: TObject);
     procedure actEditReplaceExecute(Sender: TObject);
@@ -274,7 +276,8 @@ var
 
   procedure ShowWarning(const msg: string; LineNumber: integer);
   begin
-    ShowMsg('[Προειδοποίηση] ' + '(' + IntToStr(LineNumber) + '): ' + msg, 1);
+    ShowMsg('[Προειδοποίηση] ' + '(' + IntToStr(LineNumber) +
+      '): ' + msg, 1);
   end;
 
 begin
@@ -379,7 +382,8 @@ begin
         grid.Objects[1, k] := nil;
       end
       else
-        ShowWarning('Η ετικέτα ' + grid.Cells[1, k] + ' δεν έχει οριστεί', 0);
+        ShowWarning('Η ετικέτα ' + grid.Cells[1, k] +
+          ' δεν έχει οριστεί', 0);
     end;
 
 end;
@@ -552,8 +556,8 @@ begin
   (Sender as TAction).Checked := frmMsgView.Visible;
 end;
 
-procedure TForm1.panDockDockOver(Sender: TObject; Source: TDragDockObject; X, Y: integer;
-  State: TDragState; var Accept: boolean);
+procedure TForm1.panDockDockOver(Sender: TObject; Source: TDragDockObject;
+  X, Y: integer; State: TDragState; var Accept: boolean);
 var
   ARect: TRect;
 begin
@@ -566,7 +570,8 @@ begin
   end;
 end;
 
-procedure TForm1.panDockDockDrop(Sender: TObject; Source: TDragDockObject; X, Y: integer);
+procedure TForm1.panDockDockDrop(Sender: TObject; Source: TDragDockObject;
+  X, Y: integer);
 begin
   panDock.Height := Source.DockRect.Bottom - Source.DockRect.Top;
   Source.Control.Align := alRight;
@@ -574,7 +579,8 @@ begin
   panDock.DockManager.ResetBounds(True);
 end;
 
-procedure TForm1.panDockUnDock(Sender: TObject; Client: TControl; NewTarget: TWinControl; var Allow: boolean);
+procedure TForm1.panDockUnDock(Sender: TObject; Client: TControl;
+  NewTarget: TWinControl; var Allow: boolean);
 begin
   Client.Align := alNone;
   panDock.Height := 0;
@@ -631,7 +637,8 @@ begin
   txtAssembly.Undo;
 end;
 
-procedure TForm1.txtAssemblyMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: integer);
+procedure TForm1.txtAssemblyMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: integer);
 begin
   ShowCaretPos;
 end;
