@@ -11,16 +11,16 @@ uses
 type
   TOptionsPage = class(TForm)
   protected
-    function GetLogicalPath: string; virtual;
+    function GetLogicalPath: String; virtual;
   public
-    property LogicalPath: string read GetLogicalPath;
+    property LogicalPath: String read GetLogicalPath;
   end;
 
 implementation
 
 {$R *.lfm}
 
-function TOptionsPage.GetLogicalPath: string;
+function TOptionsPage.GetLogicalPath: String;
 begin
   Result := '';
 end;

@@ -30,12 +30,12 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FHTMLFile: string;
+    FHTMLFile: String;
     FGrid: TStringGrid;
-    procedure DoExportHTML(const FileName: string);
+    procedure DoExportHTML(const FileName: String);
     procedure DoExportTemp;
   public
-    property HTMLFile: string read FHTMLFile write FHTMLFile;
+    property HTMLFile: String read FHTMLFile write FHTMLFile;
     property Grid: TStringGrid read FGrid write FGrid;
   end;
 
@@ -46,10 +46,10 @@ implementation
 
 {$R *.lfm}
 
-procedure TfrmExportHTMLWizard.DoExportHTML(const FileName: string);
+procedure TfrmExportHTMLWizard.DoExportHTML(const FileName: String);
 var
   f: TextFile;
-  i, j: integer;
+  i, j: Integer;
 begin
   AssignFile(f, FileName);
   Rewrite(f);

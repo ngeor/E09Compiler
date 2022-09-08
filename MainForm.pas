@@ -123,25 +123,25 @@ type
     procedure actViewMessagesExecute(Sender: TObject);
     procedure actViewMessagesUpdate(Sender: TObject);
     procedure panDockDockOver(Sender: TObject; Source: TDragDockObject;
-      X, Y: integer; State: TDragState; var Accept: boolean);
-    procedure panDockDockDrop(Sender: TObject; Source: TDragDockObject; X, Y: integer);
+      X, Y: Integer; State: TDragState; var Accept: Boolean);
+    procedure panDockDockDrop(Sender: TObject; Source: TDragDockObject; X, Y: Integer);
     procedure panDockUnDock(Sender: TObject; Client: TControl;
-      NewTarget: TWinControl; var Allow: boolean);
+      NewTarget: TWinControl; var Allow: Boolean);
     procedure FormShow(Sender: TObject);
     procedure actEditOptionsExecute(Sender: TObject);
-    procedure txtAssemblyKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure txtAssemblyKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure txtAssemblyKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure txtAssemblyKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure actEditUndoExecute(Sender: TObject);
     procedure txtAssemblyMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: integer);
+      Shift: TShiftState; X, Y: Integer);
     procedure actEditFindExecute(Sender: TObject);
     procedure FindDialog1Find(Sender: TObject);
     procedure actEditReplaceExecute(Sender: TObject);
     procedure ReplaceDialog1Replace(Sender: TObject);
   private
-    procedure DoOpenFile(const FileName: string);
-    procedure DoExportCSV(const FileName: string);
-    procedure DoExportTXT(const FileName: string);
+    procedure DoOpenFile(const FileName: String);
+    procedure DoExportCSV(const FileName: String);
+    procedure DoExportTXT(const FileName: String);
     procedure ParseSource;
     procedure PrepareCommands;
     procedure ShowCaretPos;
@@ -166,7 +166,7 @@ var
   LabelsHash: TStringList;
   ExtLabelsHash: TStringList;
 
-procedure TForm1.DoOpenFile(const FileName: string);
+procedure TForm1.DoOpenFile(const FileName: String);
 begin
   txtAssembly.Lines.LoadFromFile(FileName);
   ParseSource;
@@ -174,18 +174,18 @@ end;
 
 procedure TForm1.ParseSource;
 var
-  i, j, k: integer;
-  s, sComment: string;
-  addr: integer;
+  i, j, k: Integer;
+  s, sComment: String;
+  addr: Integer;
   c: T8085Command;
-  nIndex: integer;
-  sLabel, sParam: string;
-  addrLabel: integer;
-  dblParam: integer;
+  nIndex: Integer;
+  sLabel, sParam: String;
+  addrLabel: Integer;
+  dblParam: Integer;
 
-  procedure SplitComment(s: string; var sCommand, sComment: string);
+  procedure SplitComment(s: String; var sCommand, sComment: String);
   var
-    i: integer;
+    i: Integer;
   begin
     i := Pos(';', s);
     if i > 0 then
@@ -200,9 +200,9 @@ var
     end;
   end;
 
-  procedure SplitLabel(s: string; var sCommand, sLabel: string);
+  procedure SplitLabel(s: String; var sCommand, sLabel: String);
   var
-    i: integer;
+    i: Integer;
   begin
     i := Pos(':', s);
     if i > 0 then
@@ -229,11 +229,11 @@ var
     grid.Rows[j].Clear;
   end;
 
-  function FindCommand(const s: string; var sParam: string): T8085Command;
+  function FindCommand(const s: String; var sParam: String): T8085Command;
   var
-    i: integer;
-    s1, s3: string;
-    nKWIndex, nIndex: integer;
+    i: Integer;
+    s1, s3: String;
+    nKWIndex, nIndex: Integer;
   begin
     Result := nil;
     s1 := s;
@@ -260,7 +260,7 @@ var
     end;
   end;
 
-  procedure ShowMsg(const msg: string; Img: integer);
+  procedure ShowMsg(const msg: String; Img: Integer);
   begin
     with frmMsgView.lvMessages.Items.Add do
     begin
@@ -269,12 +269,12 @@ var
     end;
   end;
 
-  procedure ShowError(const msg: string; LineNumber: integer);
+  procedure ShowError(const msg: String; LineNumber: Integer);
   begin
     ShowMsg('[Σφάλμα] ' + '(' + IntToStr(LineNumber) + '): ' + msg, 0);
   end;
 
-  procedure ShowWarning(const msg: string; LineNumber: integer);
+  procedure ShowWarning(const msg: String; LineNumber: Integer);
   begin
     ShowMsg('[Προειδοποίηση] ' + '(' + IntToStr(LineNumber) +
       '): ' + msg, 1);
@@ -370,9 +370,9 @@ begin
     if grid.Objects[1, k] <> nil then
     begin
       if LabelsHash.Find(grid.Cells[1, k], nIndex) then
-        addrLabel := integer(LabelsHash.Objects[nIndex])
+        addrLabel := Integer(LabelsHash.Objects[nIndex])
       else if ExtLabelsHash.Find(grid.Cells[1, k], nIndex) then
-        addrLabel := integer(ExtLabelsHash.Objects[nIndex])
+        addrLabel := Integer(ExtLabelsHash.Objects[nIndex])
       else
         nIndex := -1;
       if nIndex <> -1 then
@@ -414,7 +414,7 @@ end;
 
 procedure TForm1.PrepareCommands;
 var
-  i: integer;
+  i: Integer;
   c: T8085Command;
 begin
   cmdList := TObjectList.Create;
@@ -468,10 +468,10 @@ begin
   Close;
 end;
 
-procedure TForm1.DoExportCSV(const FileName: string);
+procedure TForm1.DoExportCSV(const FileName: String);
 var
   f: TextFile;
-  i, j: integer;
+  i, j: Integer;
 begin
   AssignFile(f, FileName);
   Rewrite(f);
@@ -485,10 +485,10 @@ begin
   CloseFile(f);
 end;
 
-procedure TForm1.DoExportTXT(const FileName: string);
+procedure TForm1.DoExportTXT(const FileName: String);
 var
   f: TextFile;
-  i, j: integer;
+  i, j: Integer;
 begin
   AssignFile(f, FileName);
   Rewrite(f);
@@ -557,7 +557,7 @@ begin
 end;
 
 procedure TForm1.panDockDockOver(Sender: TObject; Source: TDragDockObject;
-  X, Y: integer; State: TDragState; var Accept: boolean);
+  X, Y: Integer; State: TDragState; var Accept: Boolean);
 var
   ARect: TRect;
 begin
@@ -571,7 +571,7 @@ begin
 end;
 
 procedure TForm1.panDockDockDrop(Sender: TObject; Source: TDragDockObject;
-  X, Y: integer);
+  X, Y: Integer);
 begin
   panDock.Height := Source.DockRect.Bottom - Source.DockRect.Top;
   Source.Control.Align := alRight;
@@ -580,7 +580,7 @@ begin
 end;
 
 procedure TForm1.panDockUnDock(Sender: TObject; Client: TControl;
-  NewTarget: TWinControl; var Allow: boolean);
+  NewTarget: TWinControl; var Allow: Boolean);
 begin
   Client.Align := alNone;
   panDock.Height := 0;
@@ -604,7 +604,7 @@ begin
   frmOptions.ShowModal;
 end;
 
-procedure TForm1.txtAssemblyKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TForm1.txtAssemblyKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 {var
   s: string;
   i: Integer;}
@@ -627,7 +627,7 @@ begin
     IntToStr(txtAssembly.CaretPos.Y + 1) + ': ' + IntToStr(txtAssembly.CaretPos.X + 1);
 end;
 
-procedure TForm1.txtAssemblyKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TForm1.txtAssemblyKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   ShowCaretPos;
 end;
@@ -638,7 +638,7 @@ begin
 end;
 
 procedure TForm1.txtAssemblyMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: integer);
+  Shift: TShiftState; X, Y: Integer);
 begin
   ShowCaretPos;
 end;
@@ -650,8 +650,8 @@ end;
 
 procedure TForm1.FindDialog1Find(Sender: TObject);
 var
-  FoundAt: longint;
-  StartPos, ToEnd: integer;
+  FoundAt: Longint;
+  StartPos, ToEnd: Integer;
 begin
   with txtAssembly do
   begin
@@ -686,7 +686,7 @@ end;
 
 procedure TForm1.ReplaceDialog1Replace(Sender: TObject);
 var
-  SelPos: integer;
+  SelPos: Integer;
 begin
   with TReplaceDialog(Sender) do
   begin
