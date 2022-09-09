@@ -9,34 +9,34 @@ uses SysUtils, Classes;
 type
   T8085Command = class
   private
-    FName: string;
-    FBytes: integer;
-    FCode: byte;
-    FAddress: boolean;
-    FComma: boolean;
+    FName: String;
+    FBytes: Integer;
+    FCode: Byte;
+    FAddress: Boolean;
+    FComma: Boolean;
   public
-    constructor Create(const sName: string; nBytes: integer; nCode: byte;
-      bAddress, bComma: boolean); overload;
-    constructor Create(const sSyntax: string; nCode: byte); overload;
-    property Name: string read FName;
-    property Bytes: integer read FBytes;
-    property Code: byte read FCode;
-    property Address: boolean read FAddress;
-    property Comma: boolean read FComma;
-    class function SortByName(i1, i2: T8085Command): integer;
-    function Format(const sParam: string): string;
+    constructor Create(const sName: String; nBytes: Integer; nCode: Byte;
+      bAddress, bComma: Boolean); overload;
+    constructor Create(const sSyntax: String; nCode: Byte); overload;
+    property Name: String read FName;
+    property Bytes: Integer read FBytes;
+    property Code: Byte read FCode;
+    property Address: Boolean read FAddress;
+    property Comma: Boolean read FComma;
+    class function SortByName(i1, i2: T8085Command): Integer;
+    function Format(const sParam: String): String;
   end;
 
-procedure SplitStringToList(const s: string; list: TStrings);
-function SingleSpaces(const s: string): string;
-procedure SplitList(s: string; var s1, s2: string);
-function IsHexNumber(const s: string; maxVal: integer; var num: integer): boolean;
+procedure SplitStringToList(const s: String; list: TStrings);
+function SingleSpaces(const s: String): String;
+procedure SplitList(s: String; var s1, s2: String);
+function IsHexNumber(const s: String; maxVal: Integer; var num: Integer): Boolean;
 
 implementation
 
-function IsHexNumber(const s: string; maxVal: integer; var num: integer): boolean;
+function IsHexNumber(const s: String; maxVal: Integer; var num: Integer): Boolean;
 var
-  i: integer;
+  i: Integer;
 begin
   Result := True;
   try
@@ -50,9 +50,9 @@ begin
   end;
 end;
 
-procedure SplitList(s: string; var s1, s2: string);
+procedure SplitList(s: String; var s1, s2: String);
 var
-  i: integer;
+  i: Integer;
 begin
   i := Pos(' ', s);
   if i > 0 then
@@ -67,10 +67,10 @@ begin
   end;
 end;
 
-procedure SplitStringToList(const s: string; list: TStrings);
+procedure SplitStringToList(const s: String; list: TStrings);
 var
-  i: integer;
-  j: integer;
+  i: Integer;
+  j: Integer;
 begin
   i := 1;
   list.Clear;
@@ -88,10 +88,10 @@ begin
   until i > Length(s);
 end;
 
-function SingleSpaces(const s: string): string;
+function SingleSpaces(const s: String): String;
 var
-  i: integer;
-  j: integer;
+  i: Integer;
+  j: Integer;
 begin
   i := 1;
   Result := '';
@@ -111,8 +111,8 @@ begin
   Result := Trim(Result);
 end;
 
-constructor T8085Command.Create(const sName: string; nBytes: integer;
-  nCode: byte; bAddress, bComma: boolean);
+constructor T8085Command.Create(const sName: String; nBytes: Integer;
+  nCode: Byte; bAddress, bComma: Boolean);
 begin
   inherited Create;
   FName := sName;
@@ -122,9 +122,9 @@ begin
   FComma := bComma;
 end;
 
-constructor T8085Command.Create(const sSyntax: string; nCode: byte);
+constructor T8085Command.Create(const sSyntax: String; nCode: Byte);
 var
-  i: integer;
+  i: Integer;
 begin
   inherited Create;
   FCode := nCode;
@@ -171,12 +171,12 @@ begin
     FComma := False;
 end;
 
-class function T8085Command.SortByName(i1, i2: T8085Command): integer;
+class function T8085Command.SortByName(i1, i2: T8085Command): Integer;
 begin
   SortByName := CompareStr(i1.Name, i2.Name);
 end;
 
-function T8085Command.Format(const sParam: string): string;
+function T8085Command.Format(const sParam: String): String;
 begin
   if FComma then
     Result := FName + ',' + sParam
